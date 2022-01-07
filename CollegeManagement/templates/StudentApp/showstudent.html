@@ -1,0 +1,59 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+<title> all Student</title>
+{% endblock %}
+{% block search %}
+    <ul class="navbar-nav ml-auto ">
+        <form method="post" class="form-inline" style="margin-right:auto">
+            {% csrf_token %}
+            <input class="form-control mr-sm-2" type="search" name="searchdata" placeholder="Search" aria-label="Search" required>
+            <button class="btn btn-success " type="submit">student</button>
+        </form>
+    </ul>
+
+{% endblock %}
+{% block content %}
+<h1 style="text-align: center;"> All Students</h1>
+<center>
+    <table border="4px">
+        <tr>
+            <th>ID</th>
+            <th>dept</th>
+            <th>rn</th>
+            <th>name</th>
+            <th>marks</th>
+            <th>Action</th>
+        </tr>
+        {% for stud in student_list %}
+        <tr>
+            <td>{{stud.id}}</td>
+            <td>{{stud.dept}}</td>
+            <td>{{stud.rn}}</td>
+            <td>{{stud.name}}</td>
+            <td>{{stud.marks}}</td>
+
+
+
+</center>
+
+
+<td>
+    <a href="{% url 'delete_student' stud.id %}">
+        <button class="btn btn-danger">Delete</button>
+    </a>
+</td>
+<td>
+    <a href="{% url 'update_student' stud.id %}">
+        <button class="btn btn-warning">update</button>
+    </a>
+</td>
+</tr>
+{% endfor %}
+
+</table>
+<br>
+<a href="{%url 'add_student' %}">
+    <button class="btn btn-success"> add Student</button>
+</a>
+{% endblock %}

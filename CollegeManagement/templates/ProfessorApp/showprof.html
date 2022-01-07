@@ -1,0 +1,53 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+<title> all Professor</title>
+{% endblock %}
+
+{% block content %}
+<h1 style="text-align: center;"> All Professor</h1>
+<center>
+    <table border="4px">
+        <tr>
+
+            <th>dept</th>
+            <th>name</th>
+            <th>salary</th>
+            <th>Delete</th>
+            <th>Update</th>
+        </tr>
+        {% for prof in profs_list %}
+        <tr>
+            <td>
+                {% for dept in prof.dept.all %}
+                  {{dept.name}} <br>
+                {% endfor %}
+            </td>
+
+
+            <td>{{prof.name}}</td>
+            <td>{{prof.salary}}</td>
+
+
+</center>
+
+
+<td>
+    <a href="{% url 'delete_prof' prof.id %}">
+        <button class="btn btn-danger">Delete</button>
+    </a>
+</td>
+<td>
+    <a href="{% url 'update_prof' prof.id %}">
+        <button class="btn btn-warning">update</button>
+    </a>
+</td>
+</tr>
+{% endfor %}
+
+</table>
+<br>
+<a href="{%url 'add_prof' %}">
+    <button class="btn btn-success"> add professor</button>
+</a>
+{% endblock %}

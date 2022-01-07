@@ -1,0 +1,58 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+<title> all Department</title>
+{% endblock %}
+{% block search %}
+    <ul class="navbar-nav ml-auto ">
+        <form method="post" class="form-inline" style="margin-right:auto">
+            {% csrf_token %}
+            <input class="form-control mr-sm-2" type="search" name="searchdata" placeholder="Search" aria-label="Search" required>
+            <button class="btn btn-success " type="submit">Student</button>
+        </form>
+    </ul>
+
+{% endblock %}
+{% block content %}
+<h1 style="text-align: center;"> All Department</h1>
+<center>
+    <table border="4px">
+        <tr>
+            <th>ID</th>
+            <th>name</th>
+            <th>intake</th>
+            <th>Delete</th>
+            <th>Update</th>
+
+        </tr>
+        {% for dept in depts_list %}
+        <tr>
+            <td>{{dept.id}}</td>
+            <td>{{dept.name}}</td>
+            <td>{{dept.intake}}</td>
+           
+
+
+
+</center>
+
+
+<td>
+    <a href="{% url 'delete_dept' dept.id %}">
+        <button class="btn btn-danger">Delete</button>
+    </a>
+</td>
+<td>
+    <a href="{% url 'update_dept' dept.id %}">
+        <button class="btn btn-warning">update</button>
+    </a>
+</td>
+</tr>
+{% endfor %}
+
+</table>
+<br>
+<a href="{%url 'add_dept' %}">
+    <button class="btn btn-success"> add Department</button>
+</a>
+{% endblock %}

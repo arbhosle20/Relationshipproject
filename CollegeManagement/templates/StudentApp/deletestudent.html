@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+{% load crispy_forms_tags %}
+{% block title %}
+
+    <title>  delete Student</title>
+{% endblock %}
+
+{% block content %}
+    <h1 style="text-align: center:"> Delete Student </h1>
+    <div class="container">
+        <p>
+            are you to delete this student with rn -{{student.rn}} of name-{{student.name}}
+        </p>
+        <form method="post" class="jumbotron">
+            {% csrf_token %}
+            {{form | crispy}}
+            <a href="{% url 'delete_student' student.id %}"><button class="btn btn-danger">Delete</button></a>
+            <br>
+            <br>
+
+            <a href="{% url 'show_student' %}"><button class="'btn btn-success">cancel</button></a>
+         </form>
+    </div>
+
+{% endblock %}
